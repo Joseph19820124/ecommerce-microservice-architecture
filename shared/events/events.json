@@ -1,0 +1,213 @@
+{
+  "topics": {
+    "order-events": {
+      "description": "Order lifecycle events",
+      "events": [
+        {
+          "type": "OrderCreated",
+          "schema": {
+            "orderId": "string",
+            "userId": "string",
+            "items": "array",
+            "totalAmount": "number",
+            "currency": "string",
+            "shippingAddress": "object",
+            "createdAt": "timestamp"
+          }
+        },
+        {
+          "type": "OrderConfirmed",
+          "schema": {
+            "orderId": "string",
+            "confirmedAt": "timestamp"
+          }
+        },
+        {
+          "type": "OrderCancelled",
+          "schema": {
+            "orderId": "string",
+            "reason": "string",
+            "cancelledAt": "timestamp"
+          }
+        },
+        {
+          "type": "OrderShipped",
+          "schema": {
+            "orderId": "string",
+            "trackingNumber": "string",
+            "carrier": "string",
+            "shippedAt": "timestamp"
+          }
+        },
+        {
+          "type": "OrderDelivered",
+          "schema": {
+            "orderId": "string",
+            "deliveredAt": "timestamp"
+          }
+        }
+      ]
+    },
+    "payment-events": {
+      "description": "Payment processing events",
+      "events": [
+        {
+          "type": "PaymentInitiated",
+          "schema": {
+            "paymentId": "string",
+            "orderId": "string",
+            "amount": "number",
+            "currency": "string",
+            "method": "string",
+            "initiatedAt": "timestamp"
+          }
+        },
+        {
+          "type": "PaymentCompleted",
+          "schema": {
+            "paymentId": "string",
+            "orderId": "string",
+            "transactionId": "string",
+            "completedAt": "timestamp"
+          }
+        },
+        {
+          "type": "PaymentFailed",
+          "schema": {
+            "paymentId": "string",
+            "orderId": "string",
+            "errorCode": "string",
+            "errorMessage": "string",
+            "failedAt": "timestamp"
+          }
+        },
+        {
+          "type": "RefundInitiated",
+          "schema": {
+            "refundId": "string",
+            "paymentId": "string",
+            "orderId": "string",
+            "amount": "number",
+            "reason": "string",
+            "initiatedAt": "timestamp"
+          }
+        },
+        {
+          "type": "RefundCompleted",
+          "schema": {
+            "refundId": "string",
+            "paymentId": "string",
+            "completedAt": "timestamp"
+          }
+        }
+      ]
+    },
+    "inventory-events": {
+      "description": "Inventory management events",
+      "events": [
+        {
+          "type": "InventoryReserved",
+          "schema": {
+            "reservationId": "string",
+            "orderId": "string",
+            "items": "array",
+            "reservedAt": "timestamp"
+          }
+        },
+        {
+          "type": "InventoryReleased",
+          "schema": {
+            "reservationId": "string",
+            "orderId": "string",
+            "releasedAt": "timestamp"
+          }
+        },
+        {
+          "type": "InventoryConfirmed",
+          "schema": {
+            "reservationId": "string",
+            "orderId": "string",
+            "confirmedAt": "timestamp"
+          }
+        },
+        {
+          "type": "StockLow",
+          "schema": {
+            "productId": "string",
+            "skuId": "string",
+            "currentStock": "number",
+            "threshold": "number",
+            "detectedAt": "timestamp"
+          }
+        }
+      ]
+    },
+    "user-events": {
+      "description": "User account events",
+      "events": [
+        {
+          "type": "UserRegistered",
+          "schema": {
+            "userId": "string",
+            "email": "string",
+            "registeredAt": "timestamp"
+          }
+        },
+        {
+          "type": "UserUpdated",
+          "schema": {
+            "userId": "string",
+            "updatedFields": "array",
+            "updatedAt": "timestamp"
+          }
+        },
+        {
+          "type": "UserDeleted",
+          "schema": {
+            "userId": "string",
+            "deletedAt": "timestamp"
+          }
+        }
+      ]
+    },
+    "product-events": {
+      "description": "Product catalog events",
+      "events": [
+        {
+          "type": "ProductCreated",
+          "schema": {
+            "productId": "string",
+            "name": "string",
+            "categoryId": "string",
+            "createdAt": "timestamp"
+          }
+        },
+        {
+          "type": "ProductUpdated",
+          "schema": {
+            "productId": "string",
+            "updatedFields": "array",
+            "updatedAt": "timestamp"
+          }
+        },
+        {
+          "type": "ProductDeleted",
+          "schema": {
+            "productId": "string",
+            "deletedAt": "timestamp"
+          }
+        },
+        {
+          "type": "PriceChanged",
+          "schema": {
+            "productId": "string",
+            "skuId": "string",
+            "oldPrice": "number",
+            "newPrice": "number",
+            "changedAt": "timestamp"
+          }
+        }
+      ]
+    }
+  }
+}
